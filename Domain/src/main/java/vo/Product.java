@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Product {
+	/**
+	 * 이것은 존나 테스트입니다
+	 * 니가 이걸 볼수 있으면 성공한겁니다
+	 */
 	
 	private String productId;
 	private String sellerId;
