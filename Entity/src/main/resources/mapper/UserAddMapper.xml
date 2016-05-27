@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.user.UserAddMapper">
+	<insert id="addDefalutUser" parameterType="java.util.Map">
+		INSERT INTO
+		`editshop`.`user_tb`
+		(`user_id`, `user_pwd`)
+		VALUES (#{id}, #{pwd});
+	</insert>
+
+	<insert id="addDetailUser" parameterType="userDetail">
+		UPDATE `editshop`.`user_detail_tb` 
+		SET `user_name`=#{name}, `user_email`=#{email}, `user_address`=#{address}, `user_phone`=#{phone}, 
+		`user_age`=#{age}, `user_language`=#{language}, `user_nickname`=#{nickname} 
+		WHERE `user_id`=#{id};
+		
+	</insert>
+
+	<select id="overlap" parameterType="String" resultType="integer">
+		select
+		count(*) from user_tb
+		where user_id = #{id};
+	</select>
+
+	<insert id="addInfoUser" parameterType="String">
+		INSERT INTO
+		`editshop`.`user_info_tb`
+		(`ui_uid`, `ui_milage`, `ui_visitcount`,
+		`ui_exittime`, `ui_lastvisittime`)
+		VALUES
+		(#{id}, 0, 
+		0, now(), now());
+	</insert>
+	
+	<insert id = "makeDetailUser" parameterType="String">
+		INSERT INTO `editshop`.`user_detail_tb`
+		(`user_id`, `user_status`, `user_jointime`)
+		VALUES
+		(#{id}, 10, now());
+	</insert>
+
+</mapper>
