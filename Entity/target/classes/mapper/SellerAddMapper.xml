@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.user.SellerAddMapper">
+
+	<insert id="addSeller" parameterType="seller">
+		INSERT INTO
+		`editshop`.`seller_tb`
+		(`se_uid`, `se_licensenumber`, `se_telephone`, `se_status`, `se_jointime`, `se_lastvisittime`)
+		VALUES
+		(#{id},
+		#{licensenumber}, #{telephone}, 20, now(), now());
+	</insert>
+
+	<insert id="addDefalutSellerInKor" parameterType="String">
+		INSERT INTO
+		`editshop`.`seller_kr_tb`
+		(`se_uid`)
+		VALUES
+		(#{id});
+	</insert>
+	<insert id="addDefalutSellerInKor" parameterType="String">
+		INSERT INTO
+		`editshop`.`seller_jp_tb`
+		(`se_uid`)
+		VALUES
+		(#{id});
+	</insert>
+	<insert id="addDefalutSellerInKor" parameterType="String">
+		INSERT INTO
+		`editshop`.`seller_cn_tb`
+		(`se_uid`)
+		VALUES
+		(#{id});
+	</insert>
+	<insert id="addDefalutSellerInKor" parameterType="String">
+		INSERT INTO
+		`editshop`.`seller_en_tb`
+		(`se_uid`)
+		VALUES
+		(#{id});
+	</insert>
+	<update id="updateKr" parameterType="sellerLang">
+		UPDATE `editshop`.`seller_kr_tb`
+		SET `se_name`=#{name}, `se_address`=#{address}
+		WHERE `se_uid`=#{id};
+	</update>
+	<update id="updateJp" parameterType="sellerLang">
+		UPDATE `editshop`.`seller_jp_tb`
+		SET `se_name`=#{name}, `se_address`=#{address}
+		WHERE `se_uid`=#{id};
+	</update>
+	<update id="updateCn" parameterType="sellerLang">
+		UPDATE `editshop`.`seller_cn_tb`
+		SET `se_name`=#{name}, `se_address`=#{address}
+		WHERE `se_uid`=#{id};
+	</update>
+	<update id="updateEn" parameterType="sellerLang">
+		UPDATE `editshop`.`seller_en_tb`
+		SET `se_name`=#{name}, `se_address`=#{address}
+		WHERE `se_uid`=#{id};
+	</update>
+
+
+
+
+
+</mapper>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.user.SellerAddMapper">
+
+	<resultMap id="sellerMap" type="vo.Seller">
+		<id property="id" column="se_uid" />
+		<result property="licensenumber" column="se_licensenumber" />
+		<result property="telephone" column="se_telephone" />
+		<result property="status" column="se_status" />
+		<result property="jointime" column="se_jointime" />
+		<result property="lastvisittime" column="se_lastvisittime" />
+		<result property="parcelcode" column="se_parcelcode" />
+	</resultMap>
+	
+	<select id="getAllSeller" resultType="seller" resultMap="sellerMap">
+		select se_uid, se_licensenumber, se_telephone, se_status, se_jointime, se_lastvisittime, se_parcelcode 
+		from seller_tb;
+	</select>
+	
+	<select id="getSellerById" resultType="seller" resultMap="sellerMap">
+		select se_uid, se_licensenumber, se_telephone, se_status, se_jointime, se_lastvisittime, se_parcelcode 
+		from seller_tb
+		where se_uid =#{id};
+	</select>
+	
+	
+	
+	<resultMap id="sellerLangMap" type="vo.SellerLang">
+		<id property="id" column="se_uid" />
+		<result property="name" column="se_name" />
+		<result property="address" column="se_address" />
+	</resultMap>
+	
+	<select id="getSellerLangKrById" resultType="sellerLang" resultMap="sellerMap">
+		select se_uid, se_name, se_address 
+		from seller_kr_tb;
+	</select>
+	<select id="getSellerLangEnById" resultType="sellerLang" resultMap="sellerMap">
+		select se_uid, se_name, se_address 
+		from seller_en_tb;
+	</select>
+	<select id="getSellerLangJpById" resultType="sellerLang" resultMap="sellerMap">
+		select se_uid, se_name, se_address 
+		from seller_jp_tb;
+	</select>
+	<select id="getSellerLangCnById" resultType="sellerLang" resultMap="sellerMap">
+		select se_uid, se_name, se_address 
+		from seller_cn_tb;
+	</select>
+	
+
+</mapper>

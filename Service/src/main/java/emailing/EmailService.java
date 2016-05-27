@@ -16,8 +16,11 @@ public class EmailService {
 	
 	public void emailSend(){
 		
-		System.out.println("im called");
-		 Properties p = System.getProperties();
+
+		/**
+		 * 보통 이런거 테스트 할때는 이렇게 합니다
+		 */
+		Properties p = System.getProperties();
 		  p.put("mail.smtp.starttls.enable","true");  // gmail은 무조건 true 고정, 
 		  p.put("mail.smtp.host","smtp.gmail.com"); // smtp 서버 주소
 		  p.put("mail.smtp.auth","true");    // gmail은 무조건 true 고정, SMAP 인증 사용해야함

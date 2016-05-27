@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.user.UserAdministrationMapper">
+
+
+	<select id="getPasswordById" parameterType="String" resultType="String">
+		select user_pwd from user_tb
+		where user_id = #{id};
+	</select>
+
+	<update id="changeAuthority" parameterType="java.util.Map">
+		UPDATE
+		`editshop`.`user_detail_tb`
+		SET `user_status`= #{authority}
+		WHERE
+		`user_id`= #{id};
+	</update>
+
+	<update id="checkLastVisitTime" parameterType="String">
+		update
+		user_info_tb
+		set ui_lastvisittime = now()
+		where ui_uid = #{id};
+	</update>
+
+
+	<update id="addVisitCount" parameterType="String">
+		update user_info_tb
+		set
+		ui_visitcount = ui_visitcount+1
+		where ui_uid = #{id};
+	</update>
+
+
+	<update id="addExitTime" parameterType="String">
+		UPDATE
+		`editshop`.`user_info_tb`
+		SET `ui_exittime`=now()
+		WHERE `ui_uid`=#{id};
+	</update>
+
+
+	<resultMap id="userDetailMap" type="vo.UserDetail">
+		<id property="id" column="user_id" />
+		<result property="name" column="user_name" />
+		<result property="email" column="user_email" />
+		<result property="address" column="user_address" />
+		<result property="phone" column="user_phone" />
+		<result property="jointime" column="user_jointime" />
+		<result property="status" column="user_status" />
+		<result property="age" column="user_age" />
+		<result property="language" column="user_language" />
+		<result property="nickname" column="user_nickname" />
+	</resultMap>
+	<select id="getAllUserDetail" resultType="userDetail" resultMap="userDetailMap" parameterType="java.util.Map">
+		select user_id, user_name, user_email, user_address, user_phone, user_jointime, user_status, user_age, user_language, user_nickname 
+		from user_detail_tb
+		ORDER BY user_jointime desc LIMIT #{start}, #{end};
+	</select>
+	<select id="getNomalUserDetail" resultType="userDetail" resultMap="userDetailMap" parameterType="java.util.Map">
+		select user_id, user_name, user_email, user_address, user_phone, user_jointime, user_status, user_age, user_language, user_nickname 
+		from user_detail_tb
+		where user_status = 11
+		ORDER BY user_jointime desc LIMIT #{start}, #{end};
+	</select>
+	<select id="getWaitingUserDetail" resultType="userDetail" resultMap="userDetailMap" parameterType="java.util.Map">
+		select user_id, user_name, user_email, user_address, user_phone, user_jointime, user_status, user_age, user_language, user_nickname 
+		from user_detail_tb
+		where user_status = 10
+		ORDER BY user_jointime desc LIMIT #{start}, #{end};
+	</select>
+	<select id="getSanctionUserDetail" resultType="userDetail" resultMap="userDetailMap" parameterType="java.util.Map">
+		select user_id, user_name, user_email, user_address, user_phone, user_jointime, user_status, user_age, user_language, user_nickname 
+		from user_detail_tb
+		where user_status = 12
+		ORDER BY user_jointime desc LIMIT #{start}, #{end};
+	</select>
+	<select id="getSellerUserDetail" resultType="userDetail" resultMap="userDetailMap" parameterType="java.util.Map">
+		select user_id, user_name, user_email, user_address, user_phone, user_jointime, user_status, user_age, user_language, user_nickname 
+		from user_detail_tb
+		where user_status = 20
+		ORDER BY user_jointime desc LIMIT #{start}, #{end};
+	</select>
+	<select id="getExitUserDetail" resultType="userDetail" resultMap="userDetailMap" parameterType="java.util.Map">
+		select user_id, user_name, user_email, user_address, user_phone, user_jointime, user_status, user_age, user_language, user_nickname 
+		from user_detail_tb
+		where user_status = 0
+		ORDER BY user_jointime desc LIMIT #{start}, #{end};
+	</select>
+	
+	<select id="getUserDetailById" resultType="userDetail" resultMap="userDetailMap" parameterType="String">
+		select user_id, user_name, user_email, user_address, user_phone, user_jointime, user_status, user_age, user_language, user_nickname 
+		from user_detail_tb
+		where user_id = #{id};
+	</select>
+	
+	
+	<resultMap id="userInfoMap" type="vo.UserInfo">
+		<id property="id" column="ui_uid" />
+		<result property="milage" column="ui_milage" />
+		<result property="visitcount" column="ui_visitcount" />
+		<result property="exittime" column="ui_exittime" />
+		<result property="lastvisittime" column="ui_lastvisittime" />
+	</resultMap>
+	<select id="getUserInfoById" resultType="userInfo" resultMap="userInfoMap" parameterType="String">
+		select ui_uid, ui_milage, ui_visitcount, ui_exittime, ui_lastvisittime
+		from user_info_tb
+		where ui_uid = #{id};
+	</select>
+	
+	
+</mapper>
