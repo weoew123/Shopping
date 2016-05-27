@@ -4,6 +4,7 @@ public class ProductSimple {
 
 	/**
 	 * 살려줘
+	 * asjdklfajsdklfjkl
 	 */
 	private int price;
 	private int type;
