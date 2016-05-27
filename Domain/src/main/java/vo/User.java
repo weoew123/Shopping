@@ -35,8 +35,10 @@ public class User {
 	}
 	@Override
 	public String toString() {
+		System.out.println("Im Called");
 		return "User [id=" + id + ", password=" + password + ", userDetail="
 				+ userDetail + ", userInfo=" + userInfo + "]";
+		
 	}
 	
 	

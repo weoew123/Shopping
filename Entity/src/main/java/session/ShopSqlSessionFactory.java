@@ -23,7 +23,9 @@ public class ShopSqlSessionFactory {
         if(instance == null) {
             instance = new ShopSqlSessionFactory();
         }
+        System.out.println("im called");
         return instance;
+        
     }
     
     /**
