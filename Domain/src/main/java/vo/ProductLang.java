@@ -2,6 +2,9 @@ package vo;
 
 public class ProductLang {
 
+	/**
+	 * 
+	 */
 	private String name;
 	private String address;
 	public String getName() {
