@@ -2,6 +2,9 @@ package vo;
 
 public class ProductSimple {
 
+	/**
+	 * 살려줘
+	 */
 	private int price;
 	private int type;
 	private String thumnail;
