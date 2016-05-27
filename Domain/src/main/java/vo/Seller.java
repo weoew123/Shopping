@@ -6,6 +6,9 @@ import java.util.Map;
 
 public class Seller {
 
+	/**
+	 * test
+	 */
 	private String id;
 	private String licensenumber;
 	private String telephone;
